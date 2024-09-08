@@ -1,0 +1,19 @@
+{
+  "synthetics": [{"url": "http://localhost:3000", "location": "default"}],
+  "originParameters": [{
+    "cronExpression": "* * * * *",
+    "name": "Mailmodo Internal Server",
+    "labels": [{"servicename": "allBackend"}],
+    "uptimeConfiguration": {
+      "validStatusCodes": [200, 201]
+    },
+    "originConfiguration": {
+      "requestType": "get",
+      "url": "https://service-api.mailmodo.com",
+      "authentication": "NONE",
+      "timeout": 5000,
+      "followRedirect": false
+    }
+  }]
+
+}
