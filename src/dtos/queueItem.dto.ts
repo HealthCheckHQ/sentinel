@@ -34,19 +34,23 @@ export class QueueItem {
       if (promiseResult.value.success && originParameters.uptimeConfiguration.validStatusCodes.includes(promiseResult.value.statusCode)) {
         queueItem.level = LogLevel.INFO;
         queueItem.message = promiseResult.value.originResponse.successResponse.body;
+        queueItem.duration = promiseResult.value.timeElapsed;
       } else {
         if (promiseResult.value.success) {
           queueItem.level = LogLevel.ERROR;
           queueItem.message = promiseResult.value.originResponse.successResponse.body;
+          queueItem.duration = promiseResult.value.timeElapsed;
         } else {
           queueItem.level = LogLevel.ERROR;
           queueItem.message = promiseResult.value.originResponse.failureResponse.errorMessage;
+          queueItem.duration = 0;
         }
       }
     }
     if (promiseResult.status === 'rejected') {
       queueItem.level = LogLevel.ERROR;
       queueItem.message = promiseResult.reason;
+      queueItem.duration = 0;
     }
     return queueItem;
   }

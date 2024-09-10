@@ -1,12 +1,13 @@
 import { QueueItem } from '@/dtos/queueItem.dto';
-import { BaseAdapters } from './baseAdapter';
+import { BaseAdapter } from './baseAdapter';
 import { convert } from 'json-to-line-protocol';
 import * as zlib from 'zlib';
 import axios from 'axios';
 import { GrafanaCloudPrometheusConfig } from '@/dtos/adapterConfigs/grafanaCloudPrometheus.config';
 import { validateObject } from '@/utils/classValidator';
 
-export class GrafanaCloudPrometheusAdapter extends BaseAdapters {
+// TODO: Incomplete. TBD later
+export class GrafanaCloudPrometheusAdapter extends BaseAdapter {
   config: GrafanaCloudPrometheusConfig;
   constructor(config: GrafanaCloudPrometheusConfig) {
     super();
@@ -39,13 +40,16 @@ export class GrafanaCloudPrometheusAdapter extends BaseAdapters {
 
     return response;
   }
-  protected async validateConfig(): Promise<void> {
+  public async validateConfig(): Promise<void> {
     await validateObject(GrafanaCloudPrometheusConfig, this.config);
   }
   public exportEvents(queueItem: QueueItem): Promise<void> {
     throw new Error('Method not implemented.');
   }
   public flushData(): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
+  public shutdown(): Promise<void> {
     throw new Error('Method not implemented.');
   }
 }

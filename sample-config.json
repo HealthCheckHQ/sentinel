@@ -14,6 +14,29 @@
       "timeout": 5000,
       "followRedirect": false
     }
-  }]
+  }, {
+    "cronExpression": "* * * * *",
+    "name": "Email Open Click Tracker",
+    "labels": [{"servicename": "eventsBackend"}],
+    "uptimeConfiguration": {
+      "validStatusCodes": [200, 201]
+    },
+    "originConfiguration": {
+      "requestType": "get",
+      "url": "https://tracker.mailmodo.email/opens/health",
+      "authentication": "NONE",
+      "timeout": 5000,
+      "followRedirect": false
+    }
+  }],
+  "export": {
+    "type": "EVENTHUB", 
+    "config": {
+      "eventHubNamespace": "EVENTHUB_NAMESPACE",
+      "eventHubName": "EVENTHUB_NAME",
+      "eventhubNamespaceConnectionString": "EVENTHUB_CONNECTION_STRING",
+      "exportToPrometheusFormat": true
+    }
+  }
 
 }

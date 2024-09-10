@@ -1,7 +1,14 @@
-import { ArrayMinSize, ArrayUnique, IsArray, IsString, IsUrl, ValidateNested } from 'class-validator';
+import { ArrayMinSize, ArrayUnique, IsArray, IsEnum, IsNotEmptyObject, IsObject, IsString, IsUrl, ValidateNested } from 'class-validator';
 import { OriginParameters } from './originParameters.dto';
 import { Type } from 'class-transformer';
+import { ExportType } from '@/enums/exportType.enum';
 
+export class ExportParameters {
+  @IsEnum(ExportType)
+  type: ExportType;
+  @IsObject()
+  config: any;
+}
 export class SyntheticParameter {
   @IsArray()
   @ArrayUnique()
@@ -25,4 +32,10 @@ export class SentinelParameters {
   @ValidateNested({ each: true })
   @Type(() => OriginParameters)
   originParameters: OriginParameters[];
+
+  @IsObject()
+  @IsNotEmptyObject()
+  @ValidateNested()
+  @Type(() => ExportParameters)
+  export: ExportParameters;
 }

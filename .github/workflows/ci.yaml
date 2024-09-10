@@ -1,0 +1,36 @@
+name: CI when PR is raised
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    if: ${{ (github.event.pull_request.draft == false) && (github.event_name == 'pull_request') }}
+    environment: pr-tests
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js version
+        uses: actions/setup-node@v1
+        with:
+          node-version: '18.17'
+
+      - name: npm install, build, and test
+        env: 
+          ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
+          MM_INTEGRATION_SYNC_URL: https://app-integration-sync-debug.azurewebsites.net
+          TASKFORCE_BULLMQ_TOKEN: ${{ secrets.TASKFORCE_BULLMQ_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+        run: |
+            npm install
+            npm run lint --if-present
+            npm run tscheck --if-present
+            npm run test --if-present
