@@ -13,6 +13,7 @@ import type { queueAsPromised } from 'fastq';
 import { AdapterFactory } from '@/adapters/adapterFactory';
 import { BaseAdapter } from '@/adapters/baseAdapter';
 import { OsSignalHandler } from '@utils/osSignalHandler';
+import winston from 'winston/lib/winston/config';
 
 const adapterfactory = new AdapterFactory();
 let adapter: BaseAdapter;
@@ -20,7 +21,12 @@ const cronSchedules: cron.ScheduledTask[] = [];
 
 async function queueConsumer(queueItem: QueueItem): Promise<void> {
   // No need for a try-catch block, fastq handles errors automatically
-  await adapter.exportEvents(queueItem);
+  try {
+    await adapter.exportEvents(queueItem);
+  } catch (err) {
+    logger.error(err);
+    throw err;
+  }
 }
 const exportQueue: queueAsPromised<QueueItem> = fastq.promise(queueConsumer, 1);
 const osSignalHandler = new OsSignalHandler(process);
