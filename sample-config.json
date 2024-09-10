@@ -34,7 +34,7 @@
     "config": {
       "eventHubNamespace": "EVENTHUB_NAMESPACE",
       "eventHubName": "EVENTHUB_NAME",
-      "eventhubNamespaceConnectionString": "EVENTHUB_CONNECTION_STRING",
+      "azureClientId": "AZURE_CLIENT_ID",
       "exportToPrometheusFormat": true
     }
   }

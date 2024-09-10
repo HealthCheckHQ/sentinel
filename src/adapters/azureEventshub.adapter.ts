@@ -20,7 +20,7 @@ export class AzureEventsHubAdapter extends BaseAdapter {
     const retryOptions = { retryOptions: { maxRetries: 5, retryDelayInMs: 60000, mode: 0 } };
     if (this.config.eventhubNamespaceConnectionString) {
       this.eventhubProducer = new EventHubProducerClient(this.config.eventhubNamespaceConnectionString, this.config.eventHubName, retryOptions);
-    } else if (this.config.azureClientId) {
+    } else {
       const azureIdentityCredential = new ChainedTokenCredential(new ManagedIdentityCredential(this.config.azureClientId), new AzureCliCredential());
       this.eventhubProducer = new EventHubProducerClient(
         this.config.eventHubNamespace,
@@ -28,8 +28,6 @@ export class AzureEventsHubAdapter extends BaseAdapter {
         azureIdentityCredential,
         retryOptions,
       );
-    } else {
-      throw Error('Error in Eventshub Config. Please set either connection string or azure credentials');
     }
   }
   private async sendToEventsHub(body: any) {
