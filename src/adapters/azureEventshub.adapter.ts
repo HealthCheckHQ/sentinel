@@ -3,7 +3,7 @@ import { AzureEventshubConfig } from '@/dtos/adapterConfigs/azureEventsHub.confi
 import { QueueItem } from '@/dtos/queueItem.dto';
 import { validateObject } from '@/utils/classValidator';
 import { EventHubProducerClient } from '@azure/event-hubs';
-import { AzureCliCredential, ChainedTokenCredential, ManagedIdentityCredential } from '@azure/identity';
+import { AzureCliCredential, ManagedIdentityCredential } from '@azure/identity';
 
 export class AzureEventsHubAdapter extends BaseAdapter {
   private config: AzureEventshubConfig;
@@ -21,7 +21,7 @@ export class AzureEventsHubAdapter extends BaseAdapter {
     if (this.config.eventhubNamespaceConnectionString) {
       this.eventhubProducer = new EventHubProducerClient(this.config.eventhubNamespaceConnectionString, this.config.eventHubName, retryOptions);
     } else {
-      const azureIdentityCredential = new ChainedTokenCredential(new ManagedIdentityCredential(this.config.azureClientId), new AzureCliCredential());
+      const azureIdentityCredential = this.config.azureClientId ? new ManagedIdentityCredential(this.config.azureClientId) : new AzureCliCredential();
       this.eventhubProducer = new EventHubProducerClient(
         this.config.eventHubNamespace,
         this.config.eventHubName,
@@ -33,10 +33,10 @@ export class AzureEventsHubAdapter extends BaseAdapter {
   private async sendToEventsHub(body: any) {
     const batch = await this.eventhubProducer.createBatch();
     const isAdded = batch.tryAdd({ body, contentType: 'application/json' });
-    if (isAdded) {
-      await this.eventhubProducer.sendBatch(batch);
+    if (!isAdded) {
+      throw Error('Something went wrong while adding to batch');
     }
-    throw Error('Something went wrong while adding to batch');
+    await this.eventhubProducer.sendBatch(batch);
   }
   public async exportEvents(queueItem: QueueItem): Promise<void> {
     if (!this.eventhubProducer) {
