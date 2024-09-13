@@ -1,71 +1,51 @@
-# Contributing
+<p align="center">
+  <img src="https://raw.githubusercontent.com/PKief/vscode-material-icon-theme/ec559a9f6bfd399b82bb44393651661b08aaf7ba/icons/folder-markdown-open.svg" width="20%" alt="SENTINEL-logo">
+</p>
+<p align="center">
+    <h1 align="center">SENTINEL</h1>
+</p>
+<p align="center">
+    <em>Real-time Data to Grafana Cloud 🚀 🌍 Azure Events Hub Scalability 💪 🔥 Modular Response Structures 💫 🕰 Clean Configuration Interfaces 🔄 🚀 Seamless Authentication Interfaces 🛡️ 📈 Prometheus to Grafana Bridge 🌐</em>
+</p>
+<p align="center">
+	<img src="https://img.shields.io/github/license/HealthCheckHQ/sentinel?style=default&logo=opensourceinitiative&logoColor=white&color=0080ff" alt="license">
+	<img src="https://img.shields.io/github/last-commit/HealthCheckHQ/sentinel?style=default&logo=git&logoColor=white&color=0080ff" alt="last-commit">
+	<img src="https://img.shields.io/github/languages/top/HealthCheckHQ/sentinel?style=default&color=0080ff" alt="repo-top-language">
+	<img src="https://img.shields.io/github/languages/count/HealthCheckHQ/sentinel?style=default&color=0080ff" alt="repo-language-count">
+</p>
+<p align="center">
+	<!-- default option, no dependency badges. -->
+</p>
 
-Sentinel uses GitHub to manage reviews of pull requests.
+<br>
 
-* If you are a new contributor see: [Steps to Contribute](#steps-to-contribute)
+#####  Table of Contents
 
-* If you have a trivial fix or improvement, go ahead and create a pull request,
-  addressing (with `@...`) a suitable maintainer of this repository (see
-  [MAINTAINERS.md](MAINTAINERS.md)) in the description of the pull request.
+- [Overview](#overview)
+- [Features](#features)
+- [Repository Structure](#repository-structure)
+- [Modules](#modules)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Tests](#tests)
+- [Project Roadmap](#project-roadmap)
+- [Contributing](#contributing)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
 
-* Relevant coding style guidelines are the [Go Code Review
-  Comments](https://code.google.com/p/go-wiki/wiki/CodeReviewComments)
-  and the _Formatting and style_ section of Peter Bourgon's [Go: Best
-  Practices for Production
-  Environments](https://peter.bourgon.org/go-in-production/#formatting-and-style).
+---
 
-* Be sure to sign off on the [DCO](https://github.com/probot/dco#how-it-works).
+##  Overview
 
-## Steps to Contribute
+This open-source project, Sentinel, collects sensor data and processes it for real-time monitoring through Grafana Clouds InfluxDB by making API calls. It extends the AzureEventsHubAdapter within its adapter layer to support event exportation to Azure Event Hubs in Prometheus format. The modular structure uses data transfer objects (DTOs) for standardizing data exchange and ensures secure handling and organizing of routes, users, and adapters. Various custom adapters are selectable based on the configuration type, making it versatile in diverse export types.
 
-## 🚀 Getting Started
+---
 
-### 🔖 Prerequisites
+##  Features
 
-**TypeScript**: `version >4.7.4`
 
-### 📦 Installation
-
-Build the project from source:
-
-1. Clone the sentinel repository:
-```sh
-❯ git clone https://github.com/HealthCheckHQ/sentinel
-```
-
-2. Navigate to the project directory:
-```sh
-❯ cd sentinel
-```
-
-3. Install the required dependencies:
-```sh
-❯ npm install
-```
-
-### 🤖 Usage
-
-To run the project, execute the following command:
-
-#### During Development
-
-```sh
-❯ npm run dev
-```
-
-#### Verify the final Prod run before raising PR
-
-```sh
-❯ npm run build && npm start
-```
-
-### 🧪 Tests
-
-Execute the test suite using the following command:
-
-```sh
-❯ npm test
-```
 
 ---
 
@@ -230,7 +210,58 @@ Execute the test suite using the following command:
 
 ---
 
-## 🤝 Contributing
+##  Getting Started
+
+###  Prerequisites
+
+**TypeScript**: `version x.y.z`
+
+###  Installation
+
+Build the project from source:
+
+1. Clone the sentinel repository:
+```sh
+❯ git clone https://github.com/HealthCheckHQ/sentinel/
+```
+
+2. Navigate to the project directory:
+```sh
+❯ cd sentinel
+```
+
+3. Install the required dependencies:
+```sh
+❯ npm install
+```
+
+###  Usage
+
+To run the project, execute the following command:
+
+```sh
+❯ npm run build && node dist/main.js
+```
+
+###  Tests
+
+Execute the test suite using the following command:
+
+```sh
+❯ npm test
+```
+
+---
+
+##  Project Roadmap
+
+- [X] **`Task 1`**: <strike>Implement feature one.</strike>
+- [ ] **`Task 2`**: Implement feature two.
+- [ ] **`Task 3`**: Implement feature three.
+
+---
+
+##  Contributing
 
 Contributions are welcome! Here are several ways you can contribute:
 
@@ -244,7 +275,7 @@ Contributions are welcome! Here are several ways you can contribute:
 1. **Fork the Repository**: Start by forking the project repository to your github account.
 2. **Clone Locally**: Clone the forked repository to your local machine using a git client.
    ```sh
-   git clone https://github.com/HealthCheckHQ/sentinel
+   git clone https://github.com/HealthCheckHQ/sentinel/
    ```
 3. **Create a New Branch**: Always work on a new branch, giving it a descriptive name.
    ```sh
@@ -264,40 +295,25 @@ Contributions are welcome! Here are several ways you can contribute:
 </details>
 
 <details closed>
+<summary>Contributor Graph</summary>
+<br>
+<p align="left">
+   <a href="https://github.com{/HealthCheckHQ/sentinel/}graphs/contributors">
+      <img src="https://contrib.rocks/image?repo=HealthCheckHQ/sentinel">
+   </a>
+</p>
+</details>
 
+---
 
-## Pull Request Checklist
+##  License
 
-* Branch from the main branch and, if needed, rebase to the current main branch before submitting your pull request. If it doesn't merge cleanly with main you may be asked to rebase your changes.
+This project is protected under the [SELECT-A-LICENSE](https://choosealicense.com/licenses) License. For more details, refer to the [LICENSE](https://choosealicense.com/licenses/) file.
 
-* Commits should be as small as possible, while ensuring that each commit is correct independently (i.e., each commit should compile and pass tests).
+---
 
-* If your patch is not getting reviewed or you need a specific person to review it, you can @-reply a reviewer asking for a review in the pull request or a comment.
+##  Acknowledgments
 
-* Add tests relevant to the fixed bug or new feature.
+- List any resources, contributors, inspiration, etc. here.
 
-## Adding Adapter
-Most frequent contribution will come in case of adding adapters.
-In case you are adding new adapters follow the following Guidelines. 
-1. Create a new adapter class file in `src/adapters`
-2. Extend that with the BaseAdapter. 
-3. Implement all the unimplemeted functions. 
-4. Create a Config DTO validation for the configs in `src/dtos/adapterConfigs`. For example eventsHub config validation is added [here](../src/dtos/adapterConfigs/azureEventsHub.config.ts)
-5. Add an enum value for the adapter you have written in `src/enums/exportType.enum.ts` [here](../src/enums/exportType.enum.ts).
-6. Update the [adapterFactory](../src/adapters/adapterFactory.ts) to return approriate instance of adapter for the new enum values you added. 
-7. Update the README by adding new section. 
-8. Test the code locally and create a PR. Rebase it with main and resolves conflicts if any. 
-
-## Dependency management
-
-The Sentinel project uses [NPM Node modules](https://docs.npmjs.com/about-packages-and-modules) to manage dependencies on external packages.
-
-To add or update a new dependency, use the `npm i` command:
-
-```bash
-# Pick the latest tagged release.
-npm i pkg@latest
-
-# Pick a specific version.
-npm i pkg@vX.Y.Z
-```
+---

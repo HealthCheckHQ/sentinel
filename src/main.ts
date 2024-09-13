@@ -13,12 +13,16 @@ import type { queueAsPromised } from 'fastq';
 import { AdapterFactory } from '@/adapters/adapterFactory';
 import { BaseAdapter } from '@/adapters/baseAdapter';
 import { OsSignalHandler } from '@utils/osSignalHandler';
-import winston from 'winston/lib/winston/config';
 
 const adapterfactory = new AdapterFactory();
 let adapter: BaseAdapter;
 const cronSchedules: cron.ScheduledTask[] = [];
 
+/**
+ * Consumes items from the queue and exports events using the adapter.
+ * @param queueItem - The queue item containing event data.
+ * @returns A Promise that resolves when the events are exported.
+ */
 async function queueConsumer(queueItem: QueueItem): Promise<void> {
   // No need for a try-catch block, fastq handles errors automatically
   try {
@@ -39,6 +43,12 @@ osSignalHandler.registerSigtermHandler(async () => {
   await adapter.shutdown();
 });
 
+/**
+ * Schedules probes for the given origin parameters and synthetics.
+ * @param originParameters - An array of origin parameters.
+ * @param synthetics - An array of synthetic parameters.
+ * @returns A Promise that resolves when the probes are scheduled.
+ */
 async function scheduleProbes(originParameters: OriginParameters[], synthetics: SyntheticParameter[]) {
   originParameters.forEach(originParam => {
     logger.info(`Scheduling Cron for ${originParam.name} at ${originParam.cronExpression}`);
@@ -59,15 +69,30 @@ async function scheduleProbes(originParameters: OriginParameters[], synthetics: 
   });
 }
 
+/**
+ * Checks if the given synthetics are up and running.
+ * @param synthetics - An array of synthetic parameters.
+ * @returns A Promise that resolves if all synthetics are up, or rejects if any synthetic is down.
+ */
 async function checkIfSynetheticsAreUp(synthetics: SyntheticParameter[]) {
   await Promise.all(synthetics.map(origin => syntheticHealthCheck(origin.url)));
 }
 
+/**
+ * Loads the configuration from the specified file path.
+ * @returns A Promise that resolves with the loaded configuration object.
+ */
 async function loadConfig() {
   const obj: SentinelParameters = JSON.parse(fs.readFileSync(SENTINEL_CONFIG.configPath, 'utf8'));
   await validateObject(SentinelParameters, obj);
   return obj;
 }
+
+/**
+ * Creates a configuration object from the given JSON configuration.
+ * @param config - The JSON configuration object.
+ * @returns The configuration object with environment variables substituted.
+ */
 function createConfigFromJson(config: any) {
   const configFromEnv = {};
   for (const [key, value] of Object.entries(config)) {
@@ -83,6 +108,11 @@ function createConfigFromJson(config: any) {
   return configFromEnv;
 }
 
+/**
+ * The main entry point of the application.
+ * Loads the configuration, checks if synthetics are up, creates the adapter, and schedules probes.
+ * @returns A Promise that resolves when the application is set up and running.
+ */
 export async function main() {
   const obj: SentinelParameters = await loadConfig();
   try {
