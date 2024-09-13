@@ -56,7 +56,7 @@
 
 **Sentinel: Infinite Worker for Synthetic Monitoring and Uptime Checks**
 
- The issue with all the status page tools like [betterstack](https://betterstack.com/website-monitoring), [healthcheck.io](https://healthchecks.io/), [pulsetic](https://pulsetic.com/), [pagerduty](https://www.pagerduty.com/) etc is that they provide consolidated status pages and monitors. We loose freedom on granualar individual datapoints generated and there is no way to export or get individual datapoints. Hence this project was started taking inspiration from This project was started taking inspirations from Grafana Synthetics and Monitoring plugin. But Grafana Synthetics is very costly costing more tha $5 per endpoint per month per edge servers. So we decided to build our own uptime monitoring service where individual datapoints can be exported.
+The issue with all the status page tools like [betterstack](https://betterstack.com/website-monitoring), [healthcheck.io](https://healthchecks.io/), [pulsetic](https://pulsetic.com/), [pagerduty](https://www.pagerduty.com/) etc is that they provide consolidated status pages and monitors.
 
 This project was born out of this need for **greater flexibility and data accessibility** in uptime monitoring. Inspired by the capabilities of Grafana Synthetics and Monitoring plugin, we aimed to create a more affordable solution. However, Grafana Synthetics can be expensive, costing over $5 per endpoint per month per edge server.
 
