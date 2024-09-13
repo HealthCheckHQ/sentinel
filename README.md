@@ -56,6 +56,22 @@
 
 **Sentinel: Infinite Worker for Synthetic Monitoring and Uptime Checks**
 
+ The issue with all the status page tools like [betterstack](https://betterstack.com/website-monitoring), [healthcheck.io](https://healthchecks.io/), [pulsetic](https://pulsetic.com/), [pagerduty](https://www.pagerduty.com/) etc is that they provide consolidated status pages and monitors. We loose freedom on granualar individual datapoints generated and there is no way to export or get individual datapoints. Hence this project was started taking inspiration from This project was started taking inspirations from Grafana Synthetics and Monitoring plugin. But Grafana Synthetics is very costly costing more tha $5 per endpoint per month per edge servers. So we decided to build our own uptime monitoring service where individual datapoints can be exported.
+
+This project was born out of this need for **greater flexibility and data accessibility** in uptime monitoring. Inspired by the capabilities of Grafana Synthetics and Monitoring plugin, we aimed to create a more affordable solution. However, Grafana Synthetics can be expensive, costing over $5 per endpoint per month per edge server.
+
+This is where our project comes in. We've built a cost-effective uptime monitoring service that empowers you to:
+
+* **Export raw data points** for in-depth analysis and customization on visualization and analytics tools like [grafana](https://github.com/grafana/grafana), [Metabase](https://www.metabase.com/) , [PowerBI](https://www.microsoft.com/en-us/power-platform/products/power-bi).
+* Gain **granular control** over the data you collect, allowing you to focus on specific metrics.
+* **Enjoy a more affordable** solution compared to high-priced services like Grafana Synthetics.
+
+By providing these features, we hope to offer a robust yet cost-effective alternative for users who require granular data access and control within their uptime monitoring workflows. 
+
+Adding visualization and dashboards built at [Mailmodo](https://mailmodo.com) using this tool.
+![Sample Dashboard image 1 at Mailmodo built using Sentinel](/img/sample-mailmodo-db-1.png)
+![Sample Dashboard image 2 at Mailmodo built using Sentinel](/img/sample-mailmodo-db-2.png)
+
 This repository implements an infinitely running worker service named "Sentinel". 
 
 Its primary function is to perform synthetic monitoring and uptime checks for various services based on configurations defined in a JSON file (`config.json`).
