@@ -9,21 +9,21 @@
     },
     "originConfiguration": {
       "requestType": "get",
-      "url": "https://service-api.mailmodo.com",
+      "url": "https://google.com",
       "authentication": "NONE",
       "timeout": 5000,
       "followRedirect": false
     }
   }, {
     "cronExpression": "* * * * *",
-    "name": "Email Open Click Tracker",
+    "name": "Facebook Health",
     "labels": [{"servicename": "eventsBackend"}],
     "uptimeConfiguration": {
       "validStatusCodes": [200, 201]
     },
     "originConfiguration": {
       "requestType": "get",
-      "url": "https://tracker.mailmodo.email/opens/health",
+      "url": "https://facebook.com",
       "authentication": "NONE",
       "timeout": 5000,
       "followRedirect": false

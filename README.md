@@ -112,28 +112,28 @@ The provided `sample-config.json` [here](sample-config.json) demonstrates the ca
   "synthetics": [{"url": "http://localhost:3000", "location": "default"}],
   "originParameters": [{
     "cronExpression": "* * * * *",
-    "name": "Mailmodo Internal Server",
+    "name": "Google Checks",
     "labels": [{"servicename": "allBackend"}],
     "uptimeConfiguration": {
       "validStatusCodes": [200, 201]
     },
     "originConfiguration": {
       "requestType": "get",
-      "url": "https://service-api.mailmodo.com",
+      "url": "https://google.com",
       "authentication": "NONE",
       "timeout": 5000,
       "followRedirect": false
     }
   }, {
     "cronExpression": "* * * * *",
-    "name": "Email Open Click Tracker",
+    "name": "Facebook Checks",
     "labels": [{"servicename": "eventsBackend"}],
     "uptimeConfiguration": {
       "validStatusCodes": [200, 201]
     },
     "originConfiguration": {
       "requestType": "get",
-      "url": "https://tracker.mailmodo.email/opens/health",
+      "url": "https://facebook.com",
       "authentication": "NONE",
       "timeout": 5000,
       "followRedirect": false
