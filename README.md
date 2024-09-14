@@ -17,6 +17,10 @@
 	<!-- default option, no dependency badges. -->
 </p>
 
+<p align="center">
+<a href="https://www.producthunt.com/posts/sentinel-api-healthcheck-monitor?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-sentinel&#0045;api&#0045;healthcheck&#0045;monitor" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=489310&theme=dark" alt="Sentinel&#0032;&#0045;&#0032;API&#0032;Healthcheck&#0032;Monitor&#0032; - API&#0032;Uptime&#0032;&#0045;&#0032;Monitor&#0044;&#0032;Measure&#0044;&#0032;Export&#0046;&#0032;Anywhere | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a> 
+</p>
+
 <br>
 
 ##### 🔗 Table of Contents
