@@ -31,25 +31,27 @@ export class QueueItem {
       queueItem.startTime = promiseResult.value.originResponse.startTime;
       queueItem.endTime = promiseResult.value.originResponse.endTime;
       queueItem.status = promiseResult.value.statusCode;
-      if (promiseResult.value.success && originParameters.uptimeConfiguration.validStatusCodes.includes(promiseResult.value.statusCode)) {
+      queueItem.duration = promiseResult.value.originResponse.timeElapsed;
+      if (
+        promiseResult.value.success &&
+        promiseResult.value.originResponse.successResponse &&
+        originParameters.uptimeConfiguration.validStatusCodes.includes(promiseResult.value.originResponse?.successResponse?.statusCode)
+      ) {
         queueItem.level = LogLevel.INFO;
         queueItem.message = promiseResult.value.originResponse.successResponse.body;
-        queueItem.duration = promiseResult.value.timeElapsed;
       } else {
-        if (promiseResult.value.success) {
+        if (promiseResult.value.success && promiseResult.value.originResponse.successResponse) {
           queueItem.level = LogLevel.ERROR;
           queueItem.message = promiseResult.value.originResponse.successResponse.body;
-          queueItem.duration = promiseResult.value.timeElapsed;
         } else {
           queueItem.level = LogLevel.ERROR;
           queueItem.message = promiseResult.value.originResponse.failureResponse.errorMessage;
-          queueItem.duration = 0;
         }
       }
     }
     if (promiseResult.status === 'rejected') {
       queueItem.level = LogLevel.ERROR;
-      queueItem.message = promiseResult.reason;
+      queueItem.message = `Unable to connect to sentinel: ${promiseResult.reason}`;
       queueItem.duration = 0;
     }
     return queueItem;

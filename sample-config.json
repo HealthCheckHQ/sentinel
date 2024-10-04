@@ -9,23 +9,9 @@
     },
     "originConfiguration": {
       "requestType": "get",
-      "url": "https://google.com",
+      "url": "https://service-api.mailmodo.com",
       "authentication": "NONE",
-      "timeout": 5000,
-      "followRedirect": false
-    }
-  }, {
-    "cronExpression": "* * * * *",
-    "name": "Facebook Health",
-    "labels": [{"servicename": "eventsBackend"}],
-    "uptimeConfiguration": {
-      "validStatusCodes": [200, 201]
-    },
-    "originConfiguration": {
-      "requestType": "get",
-      "url": "https://facebook.com",
-      "authentication": "NONE",
-      "timeout": 5000,
+      "timeout": 1000,
       "followRedirect": false
     }
   }],
